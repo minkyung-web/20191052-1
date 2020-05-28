@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, abort
 
 import json
+import game
 
 app = Flask(__name__)
 
@@ -13,6 +14,25 @@ def index():
 @app.route('/hello/')
 def hello():
     return 'Hello, World!'
+
+@app.route('/hello/<name>')
+def hellovar(name):
+    character = game.set_charact(name)
+    return render_template('gamestart.html', data=character)
+
+@app.route('/gamestart')
+def gamestart():
+    with open("static/save.txt", "r", encoding='utf-8') as f:
+        data = f.read()
+        character = json.loads(data)
+        print(character)
+    return "{0}님 반갑습니다. (hp {1})으로 시작합니다.".format(character["name"], character["hp"])
+
+
+@app.route('/senddata')
+def senddata():
+    name = 'world'
+    return render_template('senddata.html', data=name)
 
 
 @app.route('/input/<int:num>')
