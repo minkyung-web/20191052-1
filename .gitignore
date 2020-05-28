@@ -4,7 +4,8 @@
 
 ### 가상환경 ###
 myenv/
-
+## 게임 세이브
+save.txt
 
 ### Code ###
 .vscode/*
