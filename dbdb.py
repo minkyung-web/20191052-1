@@ -5,17 +5,9 @@ def dbcon():
 
 def create_table():
     try:
-        query = '''
-            CREATE TABLE "users" (
-            	"id"	varchar(50),
-            	"pw"	varchar(50),
-            	"name"	varchar(50),
-            	PRIMARY KEY("id")
-            );
-        '''
         db = dbcon()
         c = db.cursor()
-        c.execute(query)
+        c.execute("CREATE TABLE student (num varchar(50), name varchar(50))")
         db.commit()
     except Exception as e:
         print('db error:', e)
@@ -61,4 +53,7 @@ def select_num(num):
         db.close()
         return ret
 
-print(select_all())
+#create_table()
+#insert_data('20201234', '디비')
+ret = select_all()
+print(ret)
