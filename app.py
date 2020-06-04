@@ -3,6 +3,7 @@ from flask import Flask, request, render_template, redirect, url_for, abort
 import json
 import game
 import dbdb
+import db
 
 app = Flask(__name__)
 
@@ -47,6 +48,9 @@ def input_num(num):
     else:
         return "없어요"
 
+@app.route('/aa')
+def aa():
+    return render_template('sign.html')
 
 @app.route('/form')
 def form():
