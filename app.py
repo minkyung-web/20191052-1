@@ -65,9 +65,9 @@ def method():
 
 @app.route('/getinfo')
 def getinfo():
-    dbdb.select_all()
+    ret = dbdb.select_all()
     print(ret)
-    return "getinfo"
+    return render_template('getinfo.html', data=ret)
     #return '번호 : {}, 이름 : {}'.format(ret[0], ret[1])
 
 
