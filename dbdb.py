@@ -5,21 +5,30 @@ def dbcon():
 
 def create_table():
     try:
+        query = '''
+            CREATE TABLE "users" (
+                "id"    varchar(50),
+                "pw"    varchar(50),
+                "name"  varchar(50),
+                PRIMARY KEY("id")
+            )
+        
+        '''
         db = dbcon()
         c = db.cursor()
-        c.execute("CREATE TABLE student (num varchar(50), name varchar(50))")
+        c.execute(query)
         db.commit()
     except Exception as e:
         print('db error:', e)
     finally:
         db.close()
 
-def insert_data(num, name):
+def insert_user(id, pw, name):
     try:
         db = dbcon()
         c = db.cursor()
-        setdata = (num, name)
-        c.execute("INSERT INTO student VALUES (?, ?)", setdata)
+        setdata = (id, pw, name)
+        c.execute("INSERT INTO users VALUES (?, ?, ?)", setdata)
         db.commit()
     except Exception as e:
         print('db error:', e)
@@ -31,7 +40,7 @@ def select_all():
     try:
         db = dbcon()
         c = db.cursor()
-        c.execute('SELECT * FROM student')
+        c.execute('SELECT * FROM users')
         ret = c.fetchall()
     except Exception as e:
         print('db error:', e)
@@ -39,13 +48,13 @@ def select_all():
         db.close()
         return ret
 
-def select_num(num):
+def select_user(id, pw):
     ret = ()
     try:
         db = dbcon()
         c = db.cursor()
-        setdata = (num,)
-        c.execute('SELECT * FROM student WHERE num = ?', setdata)
+        setdata = (id, pw)
+        c.execute('SELECT * FROM users WHERE id = ? AND pw = ?', setdata)
         ret = c.fetchone()
     except Exception as e:
         print('db error:', e)
@@ -53,7 +62,24 @@ def select_num(num):
         db.close()
         return ret
 
+def check_id(id):
+    ret = ()
+    try:
+        db = dbcon()
+        c = db.cursor()
+        setdata = (id, )
+        c.execute('SELECT * FROM users WHERE id = ?', setdata)
+        ret = c.fetchone()
+    except Exception as e:
+        print('db error:', e)
+    finally:
+        db.close()
+        return ret
+
+
+
+#dbcon()
 #create_table()
-#insert_data('20201234', '디비')
-ret = select_all()
-print(ret)
+#insert_user('aaa', '1234', '에이')
+#print(select_user('abc', '1234'))
+print(select_all())
