@@ -11,18 +11,6 @@ app.secret_key = b'aaa!111/'
 def index():
     return render_template('main.html')
 
-# 로그인 후 메인페이지
-
-@app.route('/main1')
-def main1():
-    if 'user' in session:
-        return render_template("main1.html")
-    return'''
-            <script>alert('로그인이 필요합니다.');
-                 location.href='/login';
-            </script>
-           '''
-
 # 로그인
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -38,9 +26,9 @@ def login():
         print(ret)
         if ret != None:
             session['user'] = id
-            return render_template('main1.html')
+            return render_template('main.html')
         else:
-            return "아이디 또는 패스워드를 확인 하세요."
+            return redirect(url_for('login'))
 
 #회원가입
 
@@ -76,7 +64,7 @@ def getinfo():
         info = dbdb.select_all()
         return render_template("getinfo.html", data=info)
     return'''
-            <script>alert('로그인이 필요합니다');
+            <script>alert('로그인 후 이용하세요');
                  location.href='/login';
             </script>
            '''
