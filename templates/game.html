@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}메인 페이지{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<h2>게임 시작</h2>
+{% if data == "햄버거" %}
+"뚱이가 {{ data }}를 좋아합니다."<br>
+<a href={{ url_for('gameplay') }}>한번더하기</a><br>
+<a href="/">메인페이지로</a>
+{% elif data == "아이스크림" %}
+"뚱이가 {{ data }}을 좋아합니다."<br>
+<a href={{ url_for('gameplay') }}>한번더하기</a><br>
+<a href="/">메인페이지로</a>
+{% elif data == "감자튀김" %}
+"뚱이는 {{ data }} 알레르기가 있습니다. 다시 도전 해보세요!"<br>
+<a href={{ url_for('gameplay') }}>한번더하기</a><br>
+<a href="/">메인페이지로</a>
+{% endif %}
+{% endblock %}

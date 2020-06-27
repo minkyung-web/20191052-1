@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends "layout.html" %}
+{% block title %}메인 페이지{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
 <h2>게임 시작</h2>
-{{data.name}}님 반갑습니다. (HP {{data.hp}})으로 게임을 시작합니다.<br>
-길을 가다가 퉁퉁이를 만났습니다.<br>
-<a href="">1. 싸운다</a><br>
-<a href="">2. 도망간다</a>
-</body>
-</html>
+"{{ data.이름 }}님 반갑습니다. {{ data.가게 }}에 뚱이가 찾아왔습니다."<br>
+"뚱이가 원하는 메뉴를 팔아보세요!"<br>
+<a href={{ url_for('input_num', num=1) }}>햄버거</a><br>
+<a href={{ url_for('input_num', num=2) }}>아이스크림</a><br>
+<a href={{ url_for('input_num', num=3) }}>감자튀김</a><br>
+{% endblock %}

@@ -1,5 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, abort, session
 import dbdb
+import game
+import json
 
 app = Flask(__name__)
 
@@ -11,7 +13,29 @@ app.secret_key = b'aaa!111/'
 def index():
     return render_template('main.html')
 
-# 로그인
+# 게임
+
+@app.route('/gameplay')
+def gameplay():
+    name = session['user']
+    character = game.set_charact(name)
+    return render_template('gamestart.html', data = character)
+
+@app.route('/input/<int:num>')
+def input_num(num):
+    if num == 1:
+        menu = "햄버거"
+        return render_template('game.html', data = menu)
+    elif num == 2:
+        menu = "아이스크림"
+        return render_template('game.html', data = menu)
+    elif num == 3:
+        menu = "감자튀김"
+        return render_template('game.html', data = menu)
+    else:
+        return "없어요."
+
+#로그인
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

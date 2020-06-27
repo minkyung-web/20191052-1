@@ -1,0 +1,69 @@
+import random
+
+def game(P, F):
+    while True:
+        A = random.choice(["스펀지밥", "뚱이", "다람이", "플랑크톤", "징징이"])
+        print("집게리아에", A, "이(가) 왔습니다.")
+        Item = int(input(Menu))
+        if Item == 1:
+            P = P+200
+            F = F+20
+            print("보유한 돈 : ", P, "피로도 : ", F)
+        elif Item == 2:
+            P = P+100
+            F = F+10
+            print("보유한 돈 : ", P, "피로도 : ", F)
+        else:
+            if F > 0:
+                F = F-10
+                print("보유한 돈 : ", P, "피로도 : ", F)
+            else:
+                print("더이상 휴식을 못합니다.")
+        if F >= 100:
+            print("게임을 종료합니다.")
+            break
+
+def charact(Name):
+    Game = {
+        "이름" : Name,
+        "보유한돈" : 0,
+        "피로도" : 0
+    }
+    print(Name, "님 반갑습니다. 게임을 시작합니다.")
+    print("피로도가 100이 될때까지 장사를 해서 가장많은 돈을 모아보세요!")
+    return Game
+
+
+
+P = 0
+F = 0
+Menu = ["1.햄버거:200P", "2.아이스크림:100P", "3.휴식"]
+Name = input("이름을 입력하시오: ")
+Game = charact(Name)
+game(P, F)
+
+
+
+
+@app.route('/input/<int:num>')
+def input_num(num):
+    if num == 1:
+        with open("static/save.txt", "r", encoding='utf-8') as f:
+            data = f.read()
+            character = json.loads(data)
+            print(character)
+        return render_template('game.html', data = character)
+    elif num == 2:
+        with open("static/save.txt", "r", encoding='utf-8') as f:
+            data = f.read()
+            character = json.loads(data)
+            print(character)
+        return render_template('game.html', data = character)
+    elif num == 3:
+        with open("static/save.txt", "r", encoding='utf-8') as f:
+            data = f.read()
+            character = json.loads(data)
+            print(character)
+        return render_template('game.html', data = character)
+    else:
+        return "없어요."

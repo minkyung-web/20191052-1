@@ -31,6 +31,8 @@
           {% if 'user' not in session %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('join') }}">회원가입</a>
+            {% else %}
+            <a class="nav-link" href="{{ url_for('gameplay') }}">게임하기</a>
           </li>
           {% endif %}
         </ul>
