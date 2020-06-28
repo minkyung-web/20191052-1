@@ -32,6 +32,24 @@ def input_num(num):
     elif num == 3:
         menu = "감자튀김"
         return render_template('game.html', data = menu)
+    elif num == 4:
+        menu = "해파리버거"
+        return render_template('game.html', data = menu)
+    elif num == 5:
+        menu = "플랑크톤버거"
+        return render_template('game.html', data = menu)
+    elif num == 6:
+        menu = "게살버거"
+        return render_template('game.html', data = menu)
+    elif num == 7:
+        menu = "딸기아이스크림"
+        return render_template('game.html', data = menu)
+    elif num == 8:
+        menu = "초코아이스크림"
+        return render_template('game.html', data = menu)
+    elif num == 9:
+        menu = "민트아이스크림"
+        return render_template('game.html', data = menu)
     else:
         return "없어요."
 

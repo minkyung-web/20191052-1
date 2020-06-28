@@ -4,17 +4,51 @@
   {{ super() }}
 {% endblock %}
 {% block content %}
-<h2>게임 시작</h2>
+
 {% if data == "햄버거" %}
-"뚱이가 {{ data }}를 좋아합니다."<br>
-<a href={{ url_for('gameplay') }}>한번더하기</a><br>
-<a href="/">메인페이지로</a>
+<h2>햄버거</h2>
+"뚱이가 {{ data }}를 좋아합니다. 어떤 햄버거를 선택하시겠습니까?"<br>
+<a href={{ url_for('input_num', num=4) }}>해파리버거</a><br>
+<a href={{ url_for('input_num', num=5) }}>플랑크톤버거</a><br>
+<a href={{ url_for('input_num', num=6) }}>게살버거</a><br>
 {% elif data == "아이스크림" %}
-"뚱이가 {{ data }}을 좋아합니다."<br>
+<h2>아이스크림</h2>
+"뚱이가 {{ data }}을 좋아합니다. 어떤 아이스크림을 선택하시겠습니까?"<br>
+<a href={{ url_for('input_num', num=7) }}>딸기아이스크림</a><br>
+<a href={{ url_for('input_num', num=8) }}>초코아이스크림</a><br>
+<a href={{ url_for('input_num', num=9) }}>민트아이스크림</a><br>
+{% elif data == "감자튀김" %}
+<h2>감자튀김</h2>
+"뚱이는 {{ data }} 알레르기가 있습니다. 다시 도전 해보세요!"<br>
 <a href={{ url_for('gameplay') }}>한번더하기</a><br>
 <a href="/">메인페이지로</a>
-{% elif data == "감자튀김" %}
-"뚱이는 {{ data }} 알레르기가 있습니다. 다시 도전 해보세요!"<br>
+{% elif data == "해파리버거" %}
+<h2>재료소진...</h2>
+해파리버거는 재료가 소진 되었습니다.<br><br>
+<a href={{ url_for('gameplay') }}>한번더하기</a><br>
+<a href="/">메인페이지로</a>
+{% elif data == "플랑크톤버거" %}
+<h2>재료소진...</h2>
+플랑크톤버거는 재료가 소진 되었습니다.<br><br>
+<a href={{ url_for('gameplay') }}>한번더하기</a><br>
+<a href="/">메인페이지로</a>
+{% elif data == "게살버거" %}
+<h2>게임 성공!</h2>
+뚱이가 게살버거를 좋아합니다.<br><br>
+<a href="/">메인페이지로</a>
+{% elif data == "딸기아이스크림" %}
+<h2>싫어해요..</h2>
+뚱이가 딸기 아이스크림을 싫어합니다..<br><br>
+<a href={{ url_for('gameplay') }}>한번더하기</a><br>
+<a href="/">메인페이지로</a>
+{% elif data == "초코아이스크림" %}
+<h2>싫어해요..</h2>
+뚱이가 초코 아이스크림을 싫어합니다..<br><br>
+<a href={{ url_for('gameplay') }}>한번더하기</a><br>
+<a href="/">메인페이지로</a>
+{% elif data == "민트아이스크림" %}
+<h2>게임 성공!</h2>
+뚱이가 민트아이스크림을 사랑합니다.<br><br>
 <a href={{ url_for('gameplay') }}>한번더하기</a><br>
 <a href="/">메인페이지로</a>
 {% endif %}
